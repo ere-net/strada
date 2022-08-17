@@ -97,27 +97,29 @@ console.log(menu);
 // Strads
 // добавить 1 объект в ваш калькулятор - operations
 // внутри объекта operations перечислить все операции add, multi, sub
+// использовать этот объект вместо строк add, multi, sub
 
+
+const operations = {
+  add: '+',
+  multi: '*',
+  sub: '-',
+}
 
 function calc(operation, a, b) {
   let result;
-  const operations = {
-    add: '+',
-    multi: '*',
-    sub: '-',
-  }
 
   if (typeof(a) == 'number' && typeof(b) == 'number') {
     switch (operation) {
-      case 'add':
+      case operations.add:
         result = a + b;
         break;
 
-      case 'multi':
+      case operations.multi:
         result = a * b;
         break;
 
-      case 'sub':
+      case operations.sub:
         result = a - b;
         break;
 
@@ -125,7 +127,7 @@ function calc(operation, a, b) {
         result = 'error';
     }
   } else {
-    console.log('Введите числа');
+    result = 'Введите числа';
   }
 
   return result;
@@ -133,8 +135,8 @@ function calc(operation, a, b) {
 
 
 // Test
-console.log(calc('add', 1, 2));      // возвращает 3
-console.log(calc('multi', 1, 2));    // возвращает 2
-console.log(calc('sub', 3, 2)); // возвращает 1
-console.log(calc('div', 3, 2));      // возвращает error
-console.log(calc('div', 'add', 2));      // возвращает error
+console.log(calc(operations.add, 1, 2));        // возвращает 3
+console.log(calc(operations.multi, 1, 2));      // возвращает 2
+console.log(calc(operations.sub, 3, 2));        // возвращает 1
+console.log(calc(operations.div, 3, 2));        // возвращает error
+console.log(calc(operations.div, 'add', 2));    // возвращает error
